@@ -6,6 +6,7 @@ const signUpContr = require('../controller/signUpCon')
 // Product Add Middlware & Controler
 const productMW = require('../middleware/productmw')
 const productContr = require('../controller/productCon')
+const { loginCon } = require('../controller/loginCon')
 
 
 
@@ -15,6 +16,9 @@ myRouter.post('/signUp', signUpMW.signUp , signUpContr.signUp)
 
 // 2: SIGNUP USERS DATA SHOW ROUTE
 myRouter.get('/users', signUpContr.usersShow)
+
+// 3: Login User Route
+myRouter.post('/login', loginCon)
 
 
 // 1: PRODUCT ADD ROUTE 

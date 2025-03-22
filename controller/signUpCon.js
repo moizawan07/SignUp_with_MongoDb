@@ -1,4 +1,5 @@
 const {model} = require('../models/signUpSchema')
+const bcryptJs = require('bcryptjs')
 
 
 
@@ -6,11 +7,20 @@ const {model} = require('../models/signUpSchema')
 const signUp = async (req, res) => {
     let {name, email, password, address} = req.body
 
+    // Plain Pasword Convert To The Hash Password
+  const salt = await bcryptJs.genSalt(10)
+  const hashPass = await bcryptJs.hash(password, salt)
+
+  console.log('salt',salt);
+  console.log('hash',hashPass);
+  
+
+
     try {
        let userAdd = new model({
         name,
         email,
-        password,
+        password : hashPass,
         address
        }
     )
